@@ -4,7 +4,7 @@ console.log(sub(5, 2))
 console.log(mul(5, 2))
 console.log(div(0, 10))
 
-// error handling
+// error handling 
 try {
   console.log("trying to devide it by 0")
   let result = div(0, 0);
