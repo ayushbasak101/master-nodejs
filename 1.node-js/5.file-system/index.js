@@ -22,3 +22,6 @@ fs.writeFileSync(filepath, "hello from oath module")
 const readingFile = fs.readFileSync(filepath, "utf-8")
 console.log(`Reading the file ${readingFile}`)
 
+// updating the file sync method
+const changedFile = fs.appendFileSync(filepath, "\nhello it's updated")
+console.log(changedFile)
