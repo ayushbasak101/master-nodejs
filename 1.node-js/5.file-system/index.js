@@ -24,4 +24,20 @@ console.log(`Reading the file ${readingFile}`)
 
 // updating the file sync method
 const changedFile = fs.appendFileSync(filepath, "\nhello it's updated")
-console.log(changedFile)
+
+//async way of creating file
+const asyncFile = path.join(datapath, "async-example.txt")
+fs.writeFile(asyncFile, "this async way of file", (err) => {
+  if (err) throw err; 
+  console.log(`Async file of creating succesfully`)
+
+  fs.readFile(filepath, "utf-8", (err, data) => {
+    if (err) throw err;
+    console.log("added data",data)
+  })
+  fs.appendFile(asyncFile, "\n file edited fine in Async way", (err) => {
+    if (err) throw err
+    console.log(`updated the new file`)
+  })
+})
+
