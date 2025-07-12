@@ -11,7 +11,7 @@ const server = http.createServer((req, res) => {
     res.end("project page")
   }
   else {
-    res.writeHead(200, { "content-type": "text/plain" })
+    res.writeHead(500, { "content-type": "text/plain" })
     res.end("error page")
   }
 })
