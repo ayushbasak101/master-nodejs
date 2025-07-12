@@ -15,4 +15,10 @@ if (!fs.existsSync(datapath)) {
 // in data file there is examle.txt
 const filepath = path.join(datapath, 'example.txt')
 // In that what I'm writing
-fs.writeFileSync(filepath,"hello from oath module")
+fs.writeFileSync(filepath, "hello from oath module")
+
+
+// reading file with sync method
+const readingFile = fs.readFileSync(filepath, "utf-8")
+console.log(`Reading the file ${readingFile}`)
+
