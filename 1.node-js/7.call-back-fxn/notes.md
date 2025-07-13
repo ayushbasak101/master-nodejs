@@ -24,7 +24,7 @@ function sayCountry() {
 greet("Ayush", sayCountry);
 ````
 
-#### ✅ Output:
+####  Output:
 
 ```
 Hello, Ayush
