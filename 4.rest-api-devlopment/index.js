@@ -79,6 +79,11 @@ app.put("/api/books/update/:id", (req, res) => {
 });
 
 
+app.delete("/api/books/delete/:id", (req, res) => {
+  const findIndexOfCurrentBook = books.findIndex((item) => item.id === req.params.id)
+  
+})
+
 app.listen(3000, () => {
   console.log(`server is running on 3000`)
 })
