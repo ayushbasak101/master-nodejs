@@ -1,7 +1,9 @@
 import express from "express";
-import { title } from "process";
 
 const app = express();
+
+// global middleware added
+app.use(express.json())
 
 // mock data of book
 let books = [
@@ -32,7 +34,7 @@ app.get("/api/books", (req, res) => {
 
 // signle book by id
 app.get("/api/books/:id", (req, res) => {
-  const book = books.find((item) => itemm.id === req.params.id);
+  const book = books.find((item) => item.id === req.params.id);
   if (book) {
     res.status(201).json(book)
   }
@@ -46,17 +48,36 @@ app.get("/api/books/:id", (req, res) => {
 // adding new book
 app.post("/api/books/add", (req, res) => {
   const newBooks = {
+    // choose a random number between 1000
     id: Math.floor(Math.random() * 1000).toString(),
     title: Math.floor(Math.random() * 1000)
   }
-  // adding 
+  // adding into book array
   books.push(newBooks);
   res.status(200).json({
     data: newBooks,
     message: `new books added successfully`
   })
- }
+}
 )
+
+app.put("/api/books/update/:id", (req, res) => {
+  const findCurrentBook = books.find((item) => item.id === req.params.id);
+
+  if (findCurrentBook) {
+    findCurrentBook.title = req.body.title || findCurrentBook.title;
+
+    res.status(200).json({
+      message: `Book with ID ${findCurrentBook.id} updated successfully`,
+      data: findCurrentBook
+    });
+  } else {
+    res.status(404).json({
+      message: "Book not found"
+    });
+  }
+});
+
 
 app.listen(3000, () => {
   console.log(`server is running on 3000`)
