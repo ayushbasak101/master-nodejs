@@ -2,6 +2,22 @@ import express from "express";
 
 const app = express();
 
+// mock data of book
+let book = [
+  {
+    id: "1",
+    title: "Book 1"
+  },
+  {
+    id: "2",
+    title: "Book 2"
+  },
+  {
+    id: "3",
+    title: "Book 3"
+  }
+]
+
 app.get("/", (req,res) => {
   res.json({
     message:"Welcome to bookstore API"
