@@ -20,7 +20,7 @@ let book = [
 
 app.get("/", (req, res) => {
   res.json({
-    message: "Welcome to bookstore API"
+    message: "Welcome to bookstore API.."
   })
 })
 
