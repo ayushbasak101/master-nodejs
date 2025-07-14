@@ -83,6 +83,7 @@ app.delete("/api/books/delete/:id", (req, res) => {
   const findIndexOfCurrentBook = books.findIndex((item) => item.id === req.params.id)
   if (findIndexOfCurrentBook !== -1) {
     const deletedBook = books.splice(findIndexOfCurrentBook, 1)
+    // slice 1 array element
     res.status(201).json({
       message: "Book deleted succesfully",
       data: deletedBook[0]
