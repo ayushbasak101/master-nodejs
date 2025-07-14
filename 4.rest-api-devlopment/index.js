@@ -78,7 +78,6 @@ app.put("/api/books/update/:id", (req, res) => {
   }
 });
 
-
 app.delete("/api/books/delete/:id", (req, res) => {
   const findIndexOfCurrentBook = books.findIndex((item) => item.id === req.params.id)
   if (findIndexOfCurrentBook !== -1) {
