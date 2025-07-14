@@ -18,10 +18,15 @@ let book = [
   }
 ]
 
-app.get("/", (req,res) => {
+app.get("/", (req, res) => {
   res.json({
-    message:"Welcome to bookstore API"
+    message: "Welcome to bookstore API"
   })
+})
+
+//get all book
+app.get("/api/books", (req, res) => {
+  res.json(book)
 })
 
 app.listen(3000, () => {
