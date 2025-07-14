@@ -17,10 +17,6 @@ app.get("/about", (req, res) => {
   res.send("About Page")
 })
 
-app.get("/about/:id", (req, res) => {
-  
-})
-
 app.listen(5000, () => {
   console.log(`server is running on 5000`)
 })
