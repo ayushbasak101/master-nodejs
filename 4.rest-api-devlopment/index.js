@@ -1,4 +1,5 @@
 import express from "express";
+import { title } from "process";
 
 const app = express();
 
@@ -37,12 +38,25 @@ app.get("/api/books/:id", (req, res) => {
   }
   else {
     res.status(501).json({
-      message:"book not found"
+      message: "book not found"
     })
   }
 })
 
-
+// adding new book
+app.post("/api/books/add", (req, res) => {
+  const newBooks = {
+    id: Math.floor(Math.random() * 1000).toString(),
+    title: Math.floor(Math.random() * 1000)
+  }
+  // adding 
+  books.push(newBooks);
+  res.status(200).json({
+    data: newBooks,
+    message: `new books added successfully`
+  })
+ }
+)
 
 app.listen(3000, () => {
   console.log(`server is running on 3000`)
