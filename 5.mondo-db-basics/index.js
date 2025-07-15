@@ -16,3 +16,22 @@ const userSchema = new mongoose.Schema({
 })
 
 const userModel = mongoose.model("userModel", userSchema)
+
+async function runQueryExample() {
+  try {
+    const newUser = await userModel.create({
+      name: "Piyush Bansal",
+      email: "piyushbansal@getMaxListeners.com",
+      age: 89,
+      isActive: true,
+      tag: ["Developer", "Designer", "Manager"]
+    })
+    console.log(`user created successfully`,newUser)
+  } catch (error) {
+    console.error(`error`, error)
+  } finally {
+    await mongoose.connection.close()
+  }
+}
+
+runQueryExample()
