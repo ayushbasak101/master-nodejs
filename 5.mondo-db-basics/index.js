@@ -64,6 +64,7 @@ async function runQueryExample() {
     console.log(`eelected feild`, selectedFields)
     console.log(`limited user show`, limitedUser)
     console.log(`getting user by decending sorted order`, sortedUserByDecendingOrder)
+    console.log(`getting user assending sorted user`,sortedUserByAssendingOrder)
   } catch (error) {
     console.error(`error`, error)
   } finally {
