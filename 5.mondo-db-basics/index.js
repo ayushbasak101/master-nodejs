@@ -59,6 +59,9 @@ async function runQueryExample() {
     // getting the number of user by catagory
     const countUser = await userModel.countDocuments({ age: 11 })
 
+    // deleting user
+    const deletingUser=await userModel.findByIdAndDelete(newUser._id)
+
     // update content
     const updatedUser = await userModel.findByIdAndUpdate(newUser._id,
       {
