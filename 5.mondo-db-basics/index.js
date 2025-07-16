@@ -37,7 +37,7 @@ async function runQueryExample() {
     const userByCatagoryFisrtOne = await userModel.findOne({ age: 89 })
 
     // getting user by id
-    // const gettingLastUserById = await userModel.findById(newUser._id)
+    const gettingLastUserById = await userModel.findById(newUser._id)
 
 
     // Fetch all users with only 'name' and 'age' fields
