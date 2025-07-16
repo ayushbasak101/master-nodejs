@@ -44,6 +44,8 @@ async function runQueryExample() {
     // Fetch all users with only 'name' and 'age' fields
     const selectedFields = await userModel.find().select("name email -_id");
 
+    // const limitedUser=await userModel.find().limit()
+
     console.log(`user created successfully`, newUser)
     console.log(`all user show`, allUser)
     console.log(`all user by catagory`, allUserCatagory)
