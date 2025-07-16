@@ -20,8 +20,8 @@ const userModel = mongoose.model("userModel", userSchema)
 async function runQueryExample() {
   try {
     const newUser = await userModel.create({
-      name: "Piyush Bansal",
-      email: "piyushbansal@getMaxListeners.com",
+      name: "Ayush Basak",
+      email: "ggag@gmail.com",
       age: 11,
       isActive: true,
       tag: ["Developer", "Designer", "Manager"]
@@ -59,16 +59,28 @@ async function runQueryExample() {
     // getting the number of user by catagory
     const countUser = await userModel.countDocuments({ age: 11 })
 
+    // update content
+    const updatedUser = await userModel.findByIdAndUpdate(newUser._id,
+      {
+        $set: { age: 100 },
+        $push: { tags: "updated" }
+      },
+      {
+        new: true
+      })
+
     console.log(`user created successfully`, newUser)
     console.log(`all user show`, allUser)
     console.log(`all user by catagory`, allUserCatagory)
     console.log(`find the first one by catagory`, userByCatagoryFisrtOne)
-    console.log(`getting last user by ID`, gettingLastUserById)
+    // console.log(`getting last user by ID`, gettingLastUserById)
     console.log(`eelected feild`, selectedFields)
     console.log(`limited user show`, limitedUser)
     console.log(`getting user by decending sorted order`, sortedUserByDecendingOrder)
     console.log(`getting user assending sorted user`, sortedUserByAssendingOrder)
     console.log(`getting user by couting the user`, countUser)
+    console.log(`geeing updated user`,updatedUser)
+
   } catch (error) {
     console.error(`error`, error)
   } finally {
