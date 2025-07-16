@@ -60,7 +60,7 @@ async function runQueryExample() {
     const countUser = await userModel.countDocuments({ age: 11 })
 
     // deleting user
-    const deletingUser=await userModel.findByIdAndDelete(newUser._id)
+    const deletedUser=await userModel.findByIdAndDelete(newUser._id)
 
     // update content
     const updatedUser = await userModel.findByIdAndUpdate(newUser._id,
@@ -76,13 +76,14 @@ async function runQueryExample() {
     console.log(`all user show`, allUser)
     console.log(`all user by catagory`, allUserCatagory)
     console.log(`find the first one by catagory`, userByCatagoryFisrtOne)
-    // console.log(`getting last user by ID`, gettingLastUserById)
+    console.log(`getting last user by ID`, gettingLastUserById)
     console.log(`eelected feild`, selectedFields)
     console.log(`limited user show`, limitedUser)
     console.log(`getting user by decending sorted order`, sortedUserByDecendingOrder)
     console.log(`getting user assending sorted user`, sortedUserByAssendingOrder)
     console.log(`getting user by couting the user`, countUser)
-    console.log(`geeing updated user`,updatedUser)
+    console.log(`geeing updated user`, updatedUser)
+    console.log(`deleted user`,deletedUser)
 
   } catch (error) {
     console.error(`error`, error)
