@@ -40,11 +40,11 @@ async function runQueryExample() {
     // getting user by id
     const gettingLastUserById = await userModel.findById(newUser._id)
 
-    
+
     // Fetch all users with only 'name' and 'age' fields
     const selectedFields = await userModel.find().select("name email -_id");
 
-    // const limitedUser=await userModel.find().limit()
+    const limitedUser = await userModel.find().limit(3).skip(1)
 
     console.log(`user created successfully`, newUser)
     console.log(`all user show`, allUser)
@@ -52,7 +52,7 @@ async function runQueryExample() {
     console.log(`find the first one by catagory`, userByCatagoryFisrtOne)
     console.log(`getting last user by ID`, gettingLastUserById)
     console.log(`eelected feild`, selectedFields)
-    console.log(``)
+    console.log(`limited user show`, limitedUser)
   } catch (error) {
     console.error(`error`, error)
   } finally {
