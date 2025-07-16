@@ -19,14 +19,29 @@ const userModel = mongoose.model("userModel", userSchema)
 
 async function runQueryExample() {
   try {
-    const newUser = await userModel.create({
-      name: "Piyush Bansal",
-      email: "piyushbansal@getMaxListeners.com",
-      age: 89,
-      isActive: true,
-      tag: ["Developer", "Designer", "Manager"]
-    })
-    console.log(`user created successfully`,newUser)
+    // const newUser = await userModel.create({
+    //   name: "Piyush Bansal",
+    //   email: "piyushbansal@getMaxListeners.com",
+    //   age: 11,
+    //   isActive: true,
+    //   tag: ["Developer", "Designer", "Manager"]
+    // })
+
+    // getting all data without any catagory
+    const allUser = await userModel.find({})
+
+    // getting all data by catagory
+    const allUserCatagory = await userModel.find({ age: 11 })
+
+    // Retrieve the first document that matches the given query criteria.
+    const userByCatagoryFisrtOne = await userModel.findOne({ age: 89 })
+
+    
+    console.log(`user created successfully`, newUser)
+    console.log(`all user show`, allUser)
+    console.log(`all user by catagory`, allUserCatagory)
+    console.log(`find the first one by catagory`, userByCatagoryFisrtOne)
+    
   } catch (error) {
     console.error(`error`, error)
   } finally {
