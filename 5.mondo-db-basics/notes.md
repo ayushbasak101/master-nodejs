@@ -94,7 +94,7 @@ await userModel.findByIdAndUpdate(
 );
 ```
 
-> 🔧 Tip: Always use `{ new: true }` to get the updated document in return.
+>  Tip: Always use `{ new: true }` to get the updated document in return.
 
 ---
 
