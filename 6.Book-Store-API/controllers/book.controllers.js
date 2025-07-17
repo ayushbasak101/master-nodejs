@@ -71,10 +71,52 @@ export const addBook = async (req, res) => {
 }
 
 export const updateBook = async (req, res) => {
+  try {
+    const updatedFormData = req.body
+    const gettingId = req.params.id
+    const updatedBooks = await bookModel.findByIdAndUpdate(gettingId, updatedFormData,
+      {
+        new: true
+      }
+    )
+    if (!updatedBooks) {
+      res.status(404).json({
+        success: false,
+        message: "Book is not found By id"
+      })
+    }
+    res.status(200).json({
+      status: true,
+      message: "Book data updated sucessfully",
+      data: updatedFormData
+    })
 
+
+  } catch (e) {
+    console.log(e)
+    res.status(500).json({
+      success: false,
+      message: "something went wrong"
+    })
+  }
 }
 
 export const deleteBook = async (req, res) => {
+  try {
+    const gettingId = req.params.id
+    const deleteBook = await bookModel.findByIdAndDelete(gettingId)
+    if (!deleteBook) {
+      res.status(404).json({
+        success: flase,
+        message: `book is not found with this ID`
+      })
+    }
+    res.status(200).json({
+      success: true,
+      data: deleteBook
+    })
+  } catch (error) {
 
+  }
 }
 
