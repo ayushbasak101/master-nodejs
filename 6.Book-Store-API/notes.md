@@ -274,5 +274,4 @@ MONGODB_URI=mongodb+srv://<username>:<password>@cluster.mongodb.net/bookstore
 
 This project serves as a solid foundation for learning **REST APIs**, **CRUD operations**, and **MongoDB integration**. Scale it into a larger system by adding auth, pagination, search, or connecting with frontend.
 
-```
 
