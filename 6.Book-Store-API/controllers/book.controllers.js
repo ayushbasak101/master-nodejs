@@ -27,6 +27,26 @@ export const getAllBooks = async (req, res) => {
 }
 
 export const getSingleBooksById = async (req, res) => {
+  const getBookById = req.params.id;
+  const bookDetailsById = await bookModel.findById(getBookById)
+  try {
+    if (!bookDetailsById) {
+      return res.status(200).json({
+        success: false,
+        message: "Book With current ID",
+      })
+    }
+    res.status(200).json({
+      success: true,
+      data: bookDetailsById
+    })
+  } catch (e) {
+    console.log(e)
+    res.status(500).json({
+      success: false,
+      message: "something went wrong"
+    })
+  }
 
 }
 
