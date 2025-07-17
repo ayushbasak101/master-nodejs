@@ -1,7 +1,7 @@
 import express from "express"
 import { addBook, deleteBook, getAllBooks, getSingleBooksById, updateBook } from "../controllers/book.controllers.js"
 
-const router = express.Router()
+export const router = express.Router()
 
 router.get("/get", getAllBooks)
 router.get("/get/:id", getSingleBooksById)

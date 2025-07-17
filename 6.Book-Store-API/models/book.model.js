@@ -1,7 +1,7 @@
 
 import mongoose from "mongoose";
 
-export const bookSchema = new mongoose.Schema({
+ const bookSchema = new mongoose.Schema({
   name: {
     type: String,
     required: [true, "Book name must be there"],
@@ -24,3 +24,4 @@ export const bookSchema = new mongoose.Schema({
   }
 })
 
+export const bookModel=mongoose.model("bookModel",bookSchema)
