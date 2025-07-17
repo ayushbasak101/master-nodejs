@@ -1,6 +1,28 @@
 import { bookModel } from "../models/book.model";
 
 export const getAllBooks = async (req, res) => {
+  const allBooks = await bookModel.find({})
+  try {
+    if (allBooks.length > 0) {
+      res.status(201).json({
+        success: true,
+        message: "list of all books fetched here",
+        data: allBooks
+      })
+    }
+    else {
+      res.status(404).json({
+        success: flase,
+        message: "No books are here",
+      })
+    }
+  } catch (e) {
+    console.log(e)
+    res.status(500).json({
+      success: false,
+      message: "Something went wrong"
+    })
+  }
 
 }
 
