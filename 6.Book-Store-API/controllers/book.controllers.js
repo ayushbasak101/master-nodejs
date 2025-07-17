@@ -16,11 +16,15 @@ export const addBook = async (req, res) => {
       res.status(201).json({
         success: true,
         message: "Book added finally",
-        data:newBookFormData
+        data: newBookFormData
       })
     }
   } catch (e) {
-
+    console.log(e)
+    res.status(500).json({
+      success: false,
+      message: "something went wrong"
+    })
   }
 }
 
