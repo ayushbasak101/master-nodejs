@@ -1,25 +1,34 @@
-export const getAllBooks=async (req,res) => {
-  
+import { bookModel } from "../models/book.model";
+
+export const getAllBooks = async (req, res) => {
+
 }
 
-export const getSingleBooksById=async (req,res) => {
-  
+export const getSingleBooksById = async (req, res) => {
+
 }
 
-export const addBook=async (req,res) => {
+export const addBook = async (req, res) => {
   try {
     const newBookFormData = req.body;
-    const newlyCreatedBook= await 
+    const newlyCreatedBook = await bookModel.create(newBookFormData)
+    if (newlyCreatedBook) {
+      res.status(201).json({
+        success: true,
+        message: "Book added finally",
+        data:newBookFormData
+      })
+    }
   } catch (e) {
-    
+
   }
 }
 
-export const updateBook=async (req,res) => {
-  
+export const updateBook = async (req, res) => {
+
 }
 
-export const deleteBook=async (req,res) => {
-  
+export const deleteBook = async (req, res) => {
+
 }
 
