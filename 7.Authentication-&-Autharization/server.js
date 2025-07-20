@@ -1,12 +1,13 @@
 import express from "express"
 import { connectionDB } from "./database/db.js"
+import router from "./routes/auth.routes.js"
 const app = express()
 const PORT = process.env.PORT || 9000
 
 // connection to MONOGODB
-connectionDB()
+connectionDB() 
 
-
+app.use("/api/auth", router)
 
 
 app.listen(PORT, () => {
