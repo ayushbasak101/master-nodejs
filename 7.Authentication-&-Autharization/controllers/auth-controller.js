@@ -1,3 +1,4 @@
+import bcrypt from "bcryptjs"
 import { userModel } from "../models/User.js";
 
 // register controller
@@ -11,18 +12,41 @@ export const registerUser = async (req, res) => {
       $or: [{ username }, { email }]
     })
 
+
     if (checkExistingUser) {
       return {
         success: false,
         message: "User already exist,Please try with other username and email "
       }
-
     }
   } catch (error) {
     console.log(e)
     res.status(500).json({
       success: false,
       message: "Something went wrong"
+    })
+  }
+
+  //hasing user password
+  const salt = await bcrypt.genSalt(10)
+  const hashedPassword = await bcrypt.hash(password, salt)
+  const newlyCreatedUser = new userModel({
+    username,
+    email,
+    password: hashedPassword,
+    role: role || "user"
+  })
+  await newlyCreatedUser.save()
+  if (newlyCreatedUser) {
+    res.status(201).json({
+      success: true,
+      message: "user registraction is successfull"
+    })
+  }
+  else {
+    res.status(404).json({
+      success: false,
+      message: "Unable to register"
     })
   }
 }
