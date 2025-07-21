@@ -1,65 +1,47 @@
-import bcrypt from "bcryptjs"
+import bcrypt from "bcryptjs";
 import { userModel } from "../models/User.js";
 
-// register controller
+// Register Controller
 export const registerUser = async (req, res) => {
   try {
-    // extract the information from the roq body
     const { username, email, password, role } = req.body;
 
-    // check if user exist in the DB or not 
-    const checkExistingUser = await userModel.findOne({
-      $or: [{ username }, { email }]
-    })
+    // Check if user already exists (by username or email)
+    const existingUser = await userModel.findOne({
+      $or: [{ username }, { email }],
+    });
 
-
-    if (checkExistingUser) {
-      return {
+    if (existingUser) {
+      return res.status(400).json({
         success: false,
-        message: "User already exist,Please try with other username and email "
-      }
+        message: "User already exists. Please try a different username or email.",
+      });
     }
-  } catch (error) {
-    console.log(e)
-    res.status(500).json({
-      success: false,
-      message: "Something went wrong"
-    })
-  }
 
-  //hasing user password
-  const salt = await bcrypt.genSalt(10)
-  const hashedPassword = await bcrypt.hash(password, salt)
-  const newlyCreatedUser = new userModel({
-    username,
-    email,
-    password: hashedPassword,
-    role: role || "user"
-  })
-  await newlyCreatedUser.save()
-  if (newlyCreatedUser) {
+    // Hash password
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    // Create new user
+    const newUser = new userModel({
+      username,
+      email,
+      password: hashedPassword,
+      role: role || "user",
+    });
+
+    await newUser.save();
+
     res.status(201).json({
       success: true,
-      message: "user registraction is successfull"
-    })
-  }
-  else {
-    res.status(404).json({
-      success: false,
-      message: "Unable to register"
-    })
-  }
-}
-
-//login controller
-export const loginUser = async (req, res) => {
-  try {
+      message: "User registration successful",
+    });
 
   } catch (error) {
-    console.log(e)
+    console.error(error); // fixed `console.log(e)` typo
     res.status(500).json({
       success: false,
-      message: "Something went wrong"
-    })
+      message: "Something went wrong during registration",
+    });
   }
-}
+};
