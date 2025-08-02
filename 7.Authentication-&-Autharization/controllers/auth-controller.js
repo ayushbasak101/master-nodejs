@@ -38,10 +38,32 @@ export const registerUser = async (req, res) => {
     });
 
   } catch (error) {
-    console.error(error); // fixed `console.log(e)` typo
+    console.error(error);
     res.status(500).json({
       success: false,
       message: "Something went wrong during registration",
     });
   }
 };
+
+//login controller
+export const loginUser = async (req, res) => {
+  try {
+    const { username, password } = req.body;
+    // find if the current user present in db or not
+    const user = await userModel.findOne({ username })
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "invalid credentials"
+      })
+    }
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      success: false,
+      message: "Something went wrong during registration",
+    });
+  }
+}
