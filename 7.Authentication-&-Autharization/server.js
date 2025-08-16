@@ -1,6 +1,7 @@
 import express from "express"
 import { connectionDB } from "./database/db.js"
 import router from "./routes/auth.routes.js"
+import { homeRoute } from "./routes/home.routes.js"
 const app = express()
 const PORT = process.env.PORT || 9000
 
@@ -10,6 +11,7 @@ app.use(express.json())
 connectionDB()
 
 app.use("/api/auth", router)
+app.use("/api/home", homeRoute)
 
 
 app.listen(PORT, () => {
